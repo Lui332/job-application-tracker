@@ -30,3 +30,7 @@ dist-ssr
 
 # Environment variables
 .env
+
+# SQLite database
+app.db
+*.db-journal

@@ -89,7 +89,7 @@ def archive_job_application_by_id(application_id: int, db: Session = Depends(get
         raise HTTPException(status_code=404, detail="Application not found")
     
     application.is_archived = True
-    application.archived_at = datetime.now(timezone.utc)
+    application.archived_at = datetime.now(timezone.utc).date()
 
     db.commit()
     db.refresh(application)

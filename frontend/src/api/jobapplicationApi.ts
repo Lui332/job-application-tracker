@@ -7,8 +7,7 @@ export type JobApplication = {
   job_url?: string | null;
   notes?: string | null;
   date_applied?: string | null;
-  created_at?: string | null;
-  is_archived?: string | null;
+  is_archived?: boolean | null;
   archived_at?: string | null;
 };
 
@@ -23,9 +22,9 @@ export type CreateJobApplicationRequest = {
 };
 
 export type UpdateJobApplicationRequest = {
-  company_name?: string;
-  job_title?: string;
-  status?: string;
+  company_name: string;
+  job_title: string;
+  status: string;
   location?: string | null;
   job_url?: string | null;
   notes?: string | null;

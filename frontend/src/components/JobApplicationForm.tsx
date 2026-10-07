@@ -23,9 +23,9 @@ function JobApplicationForm({
     company_name: application?.company_name ?? "",
     job_title: application?.job_title ?? "",
     status: application?.status ?? "",
-    location: application?.location ?? "",
-    job_url: application?.job_url ?? "",
-    notes: application?.notes ?? "",
+    location: application?.location ?? null,
+    job_url: application?.job_url ?? null,
+    notes: application?.notes ?? null,
     date_applied: application?.date_applied ?? null,
   });
 
@@ -34,11 +34,19 @@ function JobApplicationForm({
   ) => {
     e.preventDefault();
 
+    const payload = {
+      ...form,
+      location: form.location === "" ? null : form.location,
+      job_url: form.job_url === "" ? null : form.job_url,
+      notes: form.notes === "" ? null : form.notes,
+      date_applied: form.date_applied === "" ? null : form.date_applied,
+    };
+
     try {
       if (application === null) {
-        await createJobApplication(form);
+        await createJobApplication(payload);
       } else {
-        await updateJobApplication(application.id, form);
+        await updateJobApplication(application.id, payload);
       }
 
       onSaved();
@@ -81,7 +89,6 @@ function JobApplicationForm({
         type="text"
         value={form.job_url ?? ""}
         onChange={(e) => setForm({ ...form, job_url: e.target.value })}
-        required
       ></input>
       <label>Notes</label>
       <input

@@ -8,11 +8,11 @@ class JobApplication(Base):
 
     company_name = Column(String, nullable=False)
     job_title = Column(String, nullable=False)
-    location = Column(String, nullable=False)
+    location = Column(String, nullable=True)
     status = Column(String, nullable=False)
     
-    job_url = Column(String)
-    notes = Column(String)
+    job_url = Column(String, nullable=True)
+    notes = Column(String, nullable=True)
     
     date_applied = Column(Date, nullable=True)
 
